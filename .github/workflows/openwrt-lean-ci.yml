@@ -11,8 +11,8 @@ jobs:
     steps:
       - name: Hello
         uses: actions/hello-world-javascript-action@v1
-    with:
-      who-to-greet: 'Bo Wang'
-    id: hello
+        with:
+          who-to-greet: 'Bo Wang'
+        id: hello
       - name: Echo the greeting's time
         run: echo 'The time was ${{ steps.hello.outputs.time }}.'
