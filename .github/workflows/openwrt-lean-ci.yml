@@ -6,13 +6,19 @@ on:
 
 jobs:
   build:
-    name: Greeting
+    name: Build OpenWrt
     runs-on: ubuntu-18.04
     steps:
-      - name: Hello
-        uses: actions/hello-world-javascript-action@v1
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          who-to-greet: 'Bo Wang'
-        id: hello
-      - name: Echo the greeting's time
-        run: echo 'The time was ${{ steps.hello.outputs.time }}.'
+          ref: master
+      - name: Checkout Lean
+        uses: actions/checkout@v2
+        with:
+          repository: coolsnowwolf/lede
+          path: lede
+      - name: Compile firmware
+        run: |
+          ls
+          find . -name "Makefile"
