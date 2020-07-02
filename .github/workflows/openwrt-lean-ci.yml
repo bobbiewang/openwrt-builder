@@ -86,7 +86,7 @@ jobs:
           tar czf ./$DIRNAME.tar.gz ./$DIRNAME
 
       - name: Transfer Artifact
-        uses: ppleboy/scp-action@master
+        uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
