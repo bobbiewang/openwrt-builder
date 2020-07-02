@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - master
-  # schedule:
-  #   - cron: 0 0 * * *
+  schedule:
+    - cron: 0 0,12 * * *
 
 jobs:
   build-default:
@@ -84,6 +84,7 @@ jobs:
           ls -lh ./$DIRNAME/
           cat ./$DIRNAME/sha256sums
           tar czf ./$DIRNAME.tar.gz ./$DIRNAME
+          ls -lh
 
       - name: Transfer Artifact
         uses: appleboy/scp-action@master
