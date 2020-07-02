@@ -1,8 +1,11 @@
-name: Open-Wrt-Lean-CI
+name: OpenWrt-Lean-CI
 
 on:
-  schedule:
-    - cron: 0 0 * * *
+  push:
+    branches:
+      - master
+  # schedule:
+  #   - cron: 0 0 * * *
 
 jobs:
   build:
