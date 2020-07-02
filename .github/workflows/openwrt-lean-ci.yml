@@ -83,3 +83,14 @@ jobs:
           cp ./lede/.config                         ./$DIRNAME/
           ls -lh ./$DIRNAME/
           cat ./$DIRNAME/sha256sums
+          tar czf ./$DIRNAME.tar.gz ./$DIRNAME
+
+      - name: Transfer Artifact
+        uses: ppleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          source: "./OpenWrt-*.tar.gz"
+          target: "/home/bwang/data/OpenWrt_Lean/"
