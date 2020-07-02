@@ -55,14 +55,13 @@ jobs:
 
       - name: Download 3rd Parity Packages
         run: |
-          pwd
+          cd lede
           make download -j8
           find dl -size -1024c -exec rm -f {} \;
 
       - name: Compile Firmware
         run: |
-          pwd
-          ls
+          cd lede
           make -j$(nproc) || make -j1 V=s
           echo "======================="
           echo "Space usage:"
@@ -73,5 +72,7 @@ jobs:
           du -h --max-depth=1 ./build_dir
           du -h --max-depth=1 ./bin
 
-      # - name: Prepare Artifact
-      #   run: find ./bin/targets/
+      - name: Prepare Artifact
+        run: |
+          cd lede
+          find ./bin/targets/
