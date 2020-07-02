@@ -1,1 +1,1 @@
-# openwrt-lean-compiler
+# OpenWrt Lean Compiler
