@@ -8,8 +8,8 @@ on:
   #   - cron: 0 0 * * *
 
 jobs:
-  build:
-    name: Build OpenWrt
+  build-default:
+    name: Build Lean OpenWrt (Default)
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
