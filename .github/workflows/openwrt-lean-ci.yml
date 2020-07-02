@@ -24,6 +24,8 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
+          pwd
+          docker images -q
           docker rmi `docker images -q`
           sudo rm -rf /usr/share/dotnet /etc/mysql /etc/php /etc/apt/sources.list.d
           sudo -E apt-get -y purge azure-cli ghc* zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
@@ -33,7 +35,37 @@ jobs:
           sudo -E apt-get clean
           df -h
 
-      - name: Compile firmware
+      - name: Update Feeds
         run: |
+          pwd
+          cd lede
+          sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
+          cat ./feeds.conf.default
+          ./scripts/feeds update -a
+          ./scripts/feeds install -a
+
+      - name: Prepare Configuration File
+        run: make defconfig
+
+      - name: Download 3rd Parity Packages
+        run: |
+          pwd
+          make download -j8
+          find dl -size -1024c -exec rm -f {} \;
+
+      - name: Compile Firmware
+        run: |
+          pwd
           ls
-          find . -name "Makefile"
+          make -j$(nproc) || make -j1 V=s
+          echo "======================="
+          echo "Space usage:"
+          echo "======================="
+          df -h
+          echo "======================="
+          du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
+          du -h --max-depth=1 ./build_dir
+          du -h --max-depth=1 ./bin
+
+      - name: Prepare Artifact
+        run: find ./bin/targets/
