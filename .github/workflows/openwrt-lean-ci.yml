@@ -99,6 +99,6 @@ jobs:
           port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          timeout: 60s
+          timeout: 300s
           source: "./${{ env.DATETIMESTR }}/*"
           target: "/home/bwang/data/OpenWrt_Lean/${{ env.DATETIMESTR }}"
