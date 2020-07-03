@@ -106,4 +106,4 @@ jobs:
           timeout: 60s
           source: "./README.*"
           # source: "./OpenWrt-*.tar.gz"
-          target: "/home/bwang/data/OpenWrt_Lean/${{ $DATETIMESTR) }}"
+          target: "/home/bwang/data/OpenWrt_Lean/$DATETIMESTR"
