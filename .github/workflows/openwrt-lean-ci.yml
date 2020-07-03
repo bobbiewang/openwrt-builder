@@ -94,9 +94,10 @@ jobs:
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          timeout: 60s
           source: "./README.*"
           # source: "./OpenWrt-*.tar.gz"
           target: "/home/bwang/data/OpenWrt_Lean/"
