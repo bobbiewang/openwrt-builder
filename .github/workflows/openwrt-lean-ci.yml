@@ -66,6 +66,7 @@ jobs:
       - name: Compile Firmware
         run: |
           cd lede
+          git log --pretty=format:'%cs: %s' > ChangeLog.txt
           make -j$(nproc) || make -j1 V=s
           echo "======================="
           echo "Space usage:"
@@ -90,7 +91,8 @@ jobs:
             -not -name "*efi*" -not -name "*rootfs*" -not -name "*.bin" \
             -not -name "*.vmdk" -not -name "*sha256*" | xargs -I {} cp {} ./$DIRNAME/
           cp ./lede/.config ./$DIRNAME/
-          cd ./lede && sha256sums * > checksums.sha256 && cd ..
+          cp ./lede/ChangeLog.txt ./$DIRNAME/
+          cd ./$DIRNAME/ && sha256sums * > checksums.sha256 && cd ..
           ls -lh ./$DIRNAME/
           tar czf $DIRNAME.tar.gz ./$DIRNAME/
           ls -lh
