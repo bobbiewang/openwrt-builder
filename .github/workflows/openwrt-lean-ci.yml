@@ -15,6 +15,11 @@ jobs:
     name: Build Lean OpenWrt (Default)
     runs-on: ubuntu-18.04
     steps:
+      - name: Define ENV
+        uses: allenevans/set-env@v1.0.0
+        with:
+          DATETIMESTR: ${{ OpenWrt-$(date +%Y%m%d_%H%M) }}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -106,4 +111,4 @@ jobs:
           timeout: 60s
           source: "./README.*"
           # source: "./OpenWrt-*.tar.gz"
-          target: "/home/bwang/data/OpenWrt_Lean/$(DATETIMESTR)"
+          target: "/home/bwang/data/OpenWrt_Lean/${{ $DATETIMESTR) }}"
