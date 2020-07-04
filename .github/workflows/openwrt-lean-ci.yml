@@ -1,4 +1,4 @@
-name: OpenWrt-Lean-CI
+name: OpenWrt-Lean-Mini-CI
 
 on:
   push:
