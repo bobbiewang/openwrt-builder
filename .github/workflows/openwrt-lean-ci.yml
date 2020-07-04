@@ -116,11 +116,9 @@ jobs:
             ls -lk ./tmp
 
       - name: Test FTP
-        uses: bayssmekanique/action-simple-file-upload@v1
+        uses: uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
-          host: ${{ secrets.FTP_HOST }}
-          port: ${{ secrets.FTP_PORT }}
-          user: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          src: "./${{ env.DATETIMESTR }}.tar.gz"
-          dest: "OpenWrt/${{ env.DATETIMESTR }}.tar.gz"
+          ftp-server: "ftp://${{ secrets.FTP_HOST }}:${{ secrets.FTP_PORT }}/OpenWrt"
+          ftp-username: ${{ secrets.FTP_USERNAME }}
+          ftp-password: ${{ secrets.FTP_PASSWORD }}
+          local-dir:: "tmp"
