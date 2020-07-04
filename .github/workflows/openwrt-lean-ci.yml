@@ -119,7 +119,7 @@ jobs:
       - name: Test FTP
         uses: sebastianpopp/ftp-action@releases/v2
         with:
-          host: ${{ secrets.FTP_HOST }}
+          host: bw-www.aromabeauty.cn
           user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           localDir:: "tmp"
