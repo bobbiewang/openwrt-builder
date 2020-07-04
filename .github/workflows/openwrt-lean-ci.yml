@@ -113,7 +113,7 @@ jobs:
             mkdir ./tmp
             tar czf ./tmp/${{ env.DATETIMESTR }}.tar.gz README.org
             ls -lh
-            ls -lh ./tmp
+            ls -lk ./tmp
 
       - name: Test FTP
         uses: bayssmekanique/action-simple-file-upload@v1
