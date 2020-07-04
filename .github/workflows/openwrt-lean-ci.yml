@@ -116,7 +116,7 @@ jobs:
             ls -lk ./tmp
 
       - name: Test FTP
-        uses: uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
         with:
           ftp-server: "ftp://${{ secrets.FTP_HOST }}:${{ secrets.FTP_PORT }}/OpenWrt"
           ftp-username: ${{ secrets.FTP_USERNAME }}
