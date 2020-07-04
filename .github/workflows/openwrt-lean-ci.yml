@@ -110,7 +110,10 @@ jobs:
 
       - name: Prepare File
         run: |
-            tar czf ${{ env.DATETIMESTR }}.tar.gz README.org
+            mkdir ./tmp
+            tar czf ./tmp/${{ env.DATETIMESTR }}.tar.gz README.org
+            ls -lh
+            ls -lh ./tmp
 
       - name: Test FTP
         uses: bayssmekanique/action-simple-file-upload@v1
