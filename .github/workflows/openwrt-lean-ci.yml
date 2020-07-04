@@ -26,6 +26,11 @@ jobs:
           repository: coolsnowwolf/lede
           path: lede
 
+      - name: Create ChangeLog
+        run: |
+          cd lede
+          git log origin --pretty=format:'%cs: %s' > ChangeLog.txt
+
       - name: Prepare Environment
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -66,7 +71,6 @@ jobs:
       - name: Compile Firmware
         run: |
           cd lede
-          git log --pretty=format:'%cs: %s' > ChangeLog.txt
           make -j$(nproc) || make -j1 V=s
           echo "======================="
           echo "Space usage:"
