@@ -111,7 +111,8 @@ jobs:
       - name: Prepare File
         run: |
             mkdir ./tmp
-            tar czf ./tmp/${{ env.DATETIMESTR }}.tar.gz README.org
+            git log > ChangeLog.org
+            tar czf ./tmp/${{ env.DATETIMESTR }}.tar.gz *.org
             ls -lh
             ls -lk ./tmp
 
