@@ -117,9 +117,10 @@ jobs:
             ls -lk ./tmp
 
       - name: Test FTP
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        uses: sebastianpopp/ftp-action@releases/v2
         with:
-          ftp-server: ftp://bw-www.aromabeauty.cn/
-          ftp-username: ${{ secrets.FTP_USERNAME }}
-          ftp-password: ${{ secrets.FTP_PASSWORD }}
-          local-dir:: "tmp"
+          host: ${{ secrets.FTP_HOST }}
+          user: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          localDir:: "tmp"
+          remoteDir: "OpenWrt"
