@@ -20,7 +20,7 @@ jobs:
         with:
           ref: master
 
-      - name: Checkout Lean
+      - name: Checkout Lean LEDE
         uses: actions/checkout@v2
         with:
           repository: coolsnowwolf/lede
@@ -92,7 +92,7 @@ jobs:
             -not -name "*.vmdk" -not -name "*sha256*" | xargs -I {} cp {} ./$DIRNAME/
           cp ./lede/.config ./$DIRNAME/
           cp ./lede/ChangeLog.txt ./$DIRNAME/
-          cd ./$DIRNAME/ && sha256sums * > checksums.sha256 && cd ..
+          cd ./$DIRNAME/ && sha256sum * > checksums.sha256 && cd ..
           ls -lh ./$DIRNAME/
           tar czf $DIRNAME.tar.gz ./$DIRNAME/
           ls -lh
