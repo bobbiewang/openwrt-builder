@@ -25,11 +25,12 @@ jobs:
         with:
           repository: coolsnowwolf/lede
           path: lede
+          fetch-depth: 0
 
       - name: Create ChangeLog
         run: |
           cd lede
-          git log origin --pretty=format:'%cs: %s' > ChangeLog.txt
+          git log --pretty=format:'%cs: %s' > ChangeLog.txt
 
       - name: Prepare Environment
         env:
@@ -88,7 +89,6 @@ jobs:
           echo "======================="
           ls -lh ./lede/bin/targets/x86/64/
           echo "======================="
-          # DIRNAME="OpenWrt-$(date +%Y%m%d_%H%M)"
           DIRNAME="${{ env.DATETIMESTR }}"
           mkdir ./$DIRNAME
           find ./lede/bin/targets/x86/64/ -maxdepth 1 -type f           \
@@ -97,9 +97,8 @@ jobs:
           cp ./lede/.config ./$DIRNAME/
           cp ./lede/ChangeLog.txt ./$DIRNAME/
           cd ./$DIRNAME/ && sha256sum * > checksums.sha256 && cd ..
-          ls -lh ./$DIRNAME/
           tar czf $DIRNAME.tar.gz ./$DIRNAME/
-          ls -lh
+          ls -lk
 
       - name: Transfer Artifact
         uses: appleboy/scp-action@master
